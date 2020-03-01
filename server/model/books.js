@@ -15,7 +15,7 @@ const BookSchema = new Schema({
     rate: {
         type: Number
     },
-    img: {
+    image: {
         type: String
     },
     price: {
