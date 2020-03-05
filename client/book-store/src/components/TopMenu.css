@@ -1,0 +1,25 @@
+.logo{
+    color: #EE5A24;
+    text-decoration: none;
+}
+
+.logo:hover{
+    color: #EE5A24;
+    text-decoration: none;
+}
+
+.navbar-item{
+    margin: 0 10px;
+}
+
+.navbar-item a.nav-item-link{
+    text-decoration: none;
+    color: #2f3640;
+    transition: 0.3s;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.navbar-item a.nav-item-link:hover{
+    color: #535c68;
+}

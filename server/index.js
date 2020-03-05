@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const Key = require('./config/default');
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 //connect mongose
 const connectDB = require('./config/connectDB');
