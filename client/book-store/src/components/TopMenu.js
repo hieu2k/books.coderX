@@ -8,6 +8,7 @@ import {
     NavItem,
     Container
 } from "reactstrap";
+import classnames from 'classnames'
 
 import { Link } from "react-router-dom";
 import { BookContext } from "../contexts/ProviderContext";
@@ -42,6 +43,9 @@ const TopMenu = props => {
                         </NavItem>
                         <NavItem className="navbar-item">
                             <Link className="nav-item-link" to="/cart">Cart ({amountCart})</Link>
+                        </NavItem>
+                        <NavItem className="navbar-item">
+                            <Link className="nav-item-link" to="/login">Login</Link>
                         </NavItem>
                     </Nav>
                 </Collapse>

@@ -5,7 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 import { BookContext } from '../contexts/ProviderContext';
 
 export default function () {
-    const { cart , AddToCart, RemoveOneBook, DeleteBook} = useContext(BookContext);
+    const { cart , AddToCart, RemoveOneBook, DeleteBook, checkLogin} = useContext(BookContext);
 
     return (
         <Container>
@@ -17,7 +17,11 @@ export default function () {
                         )
                     })}
                 </Col>
-                <Col lg="4"></Col>
+                <Col lg="4">
+                    <button onClick={() => {
+                        checkLogin();
+                    }}>BUY AND PAY CART</button>
+                </Col>
             </Row>
         </Container>
     );
@@ -29,7 +33,7 @@ const CartItem = (book, index, AddToCart, RemoveOneBook, DeleteBook) => {
         <Table key={index}>
             <tbody>
                 <tr>
-                    <th><img src={book.image} /></th>
+                    <th><img src={book.image} atl="image"/></th>
                     <td>
                         <div className="about-book">
                             <p className="name">{book.name}</p>

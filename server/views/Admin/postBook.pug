@@ -1,0 +1,60 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='description' content='')
+  meta(name='author' content='')
+  title Page Title - SB Admin
+  link(href='/css/styles.css' rel='stylesheet')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js' crossorigin='anonymous')
+#layoutAuthentication
+  #layoutAuthentication_content
+    main
+      .container
+        .row.justify-content-center
+          .col-lg-7
+            .card.shadow-lg.border-0.rounded-lg.mt-5
+              .card-header
+                h3.text-center.font-weight-light.my-4 Create Book
+              .card-body
+                form( method="POST" enctype="multipart/form-data")
+                  .form-row
+                    .col-md-6
+                      .form-group
+                        label.small.mb-1(for='inputFirstName') Name
+                        input#inputFirstName.form-control.py-4(type='text' name="name" placeholder='Enter name')
+                    .col-md-3
+                      .form-group
+                        label.small.mb-1(for='inputLastName') Price
+                        input#inputLastName.form-control.py-4(type='number' name="price" placeholder='Enter Price' min="0")
+                    .col-md-3
+                      .form-group
+                        label.small.mb-1(for='inputLastName') Amount
+                        input#inputLastName.form-control.py-4(type='number' name="amount" placeholder='Enter Amout' min="0")   
+                  .form-group
+                    label.small.mb-1(for='inputEmailAddress') Description
+                    input#inputEmailAddress.form-control.py-4(type='text' name="des" aria-describedby='emailHelp' placeholder='Enter description')
+                  .form-row
+                    .col-md-6
+                      .form-group
+                        label.small.mb-1(for='inputPassword') Category
+                        input#inputPassword.form-control.py-4(type='text' name="category" placeholder='Enter category')
+                    .col-md-6
+                      .form-group
+                        label.small.mb-1(for='inputConfirmPassword') Image
+                        input#inputConfirmPassword.form-control.py-4(type='file' name="image" placeholder='Choose image')
+                  .form-group.mt-4.mb-0
+                    button.btn.btn-primary.btn-block Post Book
+  #layoutAuthentication_footer
+    footer.py-4.bg-light.mt-auto
+      .container-fluid
+        .d-flex.align-items-center.justify-content-between.small
+          .text-muted Copyright &copy; Your Website 2019
+          div
+            a(href='#') Privacy Policy
+            |                                 &middot;
+            a(href='#') Terms &amp; Conditions
+script(src='https://code.jquery.com/jquery-3.4.1.min.js' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js' crossorigin='anonymous')
+script(src='/js/scripts.js')

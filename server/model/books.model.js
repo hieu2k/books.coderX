@@ -6,19 +6,23 @@ const BookSchema = new Schema({
     name: {
         type: String
     },
-    catalogue: {
+    category: {
         type: String
     },
     des: {
         type: String
     },
     rate: {
-        type: Number
+        type: Number,
+        default: 0
     },
     image: {
         type: String
     },
     price: {
+        type: Number
+    },
+    amount: {
         type: Number
     }
 })

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -9,6 +10,9 @@ import BooksPage from "./pages/books";
 import HomePage from "./components/Home";
 import CartPage from './pages/cart';
 import { BookProvider } from "./contexts/ProviderContext";
+import LoginPage from './pages/login';
+
+
 
 export default function App() {
   return (
@@ -21,7 +25,13 @@ export default function App() {
             </div>
           </div>
           <Switch>
-          <Route path="/cart">
+          <Route path="/payment">
+              <Payment />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/cart">
               <Cart />
             </Route>
             <Route path="/books">
@@ -52,5 +62,18 @@ function Books() {
 function Cart() {
   return (
     <CartPage />
+  );
+}
+
+function Login() {
+  return (
+    <LoginPage />
+  );
+}
+
+
+function Payment() {
+  return (
+    <h1>Buy successfully</h1>
   );
 }
