@@ -1,31 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export const BookContext = React.createContext({
-    books: [],
-    cart: 0
-});
+export const BookContext = React.createContext();
 
 export function BookProvider(props) {
     const [state, setState] = useState({
         books: [],
-        cart: []
+        cart: [],
+        stateLogin: {
+            email: null,
+            password: null,
+            token: null,
+            login: false
+        }
     });
     const URL = "http://localhost:8080/api/books";
 
     useEffect(() => {
-        //save data
+
+        if (localStorage.getItem('store')) {
+            const token = JSON.parse(localStorage.getItem('store')).token;
+            setState((state) => {
+                return {
+                    ...state,
+                    stateLogin: {
+                        ...state.stateLogin,
+                        login: true,
+                        token: token
+                    }
+                }
+            })
+        }
+
     }, []);
 
     useEffect(() => {
-        axios
-            .get(URL)
-            .then(res => {
-                const data = res.data;
-                setState((state) => {
-                    return { ...state, books: data }
-                });
-            })
+        axios({
+            method: "GET",
+            baseURL: 'http://localhost:8080/api/books'
+        }).then(res => {
+            const data = res.data;
+            setState((state) => {
+                return { ...state, books: data }
+            });
+        })
             .catch(err => console.log("Error is: ", err));
     }, [state]);
 
@@ -100,6 +118,62 @@ export function BookProvider(props) {
             }
         })
     }
+    //login
+    const getUsername = (username) => {
+        setState((state) => {
+            return {
+                ...state,
+                stateLogin: {
+                    ...state.stateLogin,
+                    email: username
+                }
+            }
+        })
+    }
+
+    const getPassword = (password) => {
+        setState((state) => {
+            return {
+                ...state,
+                stateLogin: {
+                    ...state.stateLogin,
+                    password: password
+                }
+            }
+        })
+    }
+
+    const login = async () => {
+        await axios({
+            method: 'post',
+            baseURL: 'http://localhost:8080/api/login',
+            data: {
+                username: state.stateLogin.email,
+                password: state.stateLogin.password
+            }
+        }).then(res => {
+            localStorage.setItem('store', JSON.stringify({ token: res.data }));
+            setState((state) => {
+                return {
+                    ...state,
+                    stateLogin: {
+                        ...state.stateLogin,
+                        login: true,
+                        token: res.data
+                    }
+                }
+            })
+        })
+    };
+
+    //checkLogin
+    const checkLogin = () => {
+        if (!state.stateLogin.token) {
+            window.location = "http://localhost:3000/login"
+            return;
+        }
+        window.location = "http://localhost:3000/payment"
+    }
 
     return (
         <BookContext.Provider
@@ -108,7 +182,12 @@ export function BookProvider(props) {
                 cart: state.cart,
                 AddToCart: AddToCart,
                 RemoveOneBook: RemoveOneBook,
-                DeleteBook: DeleteBook
+                DeleteBook: DeleteBook,
+                stateLogin: state.stateLogin,
+                getUsername: getUsername,
+                getPassword: getPassword,
+                login: login,
+                checkLogin: checkLogin
             }}
         >
             {props.children}

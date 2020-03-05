@@ -4,5 +4,8 @@ module.exports = {
     },
     sessions:{
         secret: "Hello ae my name is Hieu !!!!?????{{}}}"
+    },
+    token:{
+        secret: "hhhshshshhsh"
     }
 }
